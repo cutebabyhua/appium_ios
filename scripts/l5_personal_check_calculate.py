@@ -14,27 +14,27 @@ SCREENSHOT_NAME = "check_sum_error.png"
 
 class TestAppiumIosL5(unittest.TestCase):
 
-    # @classmethod
-    # def setUpClass(cls):
-    #     print "setUpClass"
-    #     super(TestAppiumIosL5, cls).setUpClass()
-    #     # open TestApp.app on simulator iPhone 5s (9.3)
-    #     desired_caps = {}
-    #     desired_caps['platformName'] = 'iOS'
-    #     desired_caps['platformVersion'] = '9.3'
-    #
-    #     # simulator
-    #     desired_caps['deviceName'] = 'iPhone 5s'
-    #     desired_caps['app'] = PATH(
-    #         '../app/TestApp/build/Debug-iphonesimulator/TestApp.app'
-    #     )
-    #     cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+    @classmethod
+    def setUpClass(cls):
+        print "setUpClass"
+        super(TestAppiumIosL5, cls).setUpClass()
+        # open TestApp.app on simulator iPhone 5s (9.3)
+        desired_caps = {}
+        desired_caps['platformName'] = 'iOS'
+        desired_caps['platformVersion'] = '9.3'
 
-    # @classmethod
-    # def tearDownClass(cls):
-    #     super(TestAppiumIosL5, cls).tearDownClass()
-    #     print 'tearDownClass'
-    #     cls.driver.quit()
+        # simulator
+        desired_caps['deviceName'] = 'iPhone 5s'
+        desired_caps['app'] = PATH(
+            '../app/TestApp/build/Debug-iphonesimulator/TestApp.app'
+        )
+        cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+
+    @classmethod
+    def tearDownClass(cls):
+        super(TestAppiumIosL5, cls).tearDownClass()
+        print 'tearDownClass'
+        cls.driver.quit()
 
 
     def setUp(self):
@@ -53,8 +53,8 @@ class TestAppiumIosL5(unittest.TestCase):
 
 
     def test_check_sum_function(self):
-        first_arg = 10
-        second_arg = 2
+        first_arg = 5
+        second_arg = 6
 
         # find elements
         first_arg_textfield = self.driver.find_element_by_accessibility_id("IntegerA")
@@ -62,7 +62,9 @@ class TestAppiumIosL5(unittest.TestCase):
         sum_button = self.driver.find_element_by_name("ComputeSumButton")
 
         # compute sum
+        first_arg_textfield.send_keys("")
         first_arg_textfield.send_keys(str(first_arg))
+        second_arg_textfield.send_keys("")
         second_arg_textfield.send_keys(str(second_arg))
         sum_button.click()
 
@@ -82,7 +84,9 @@ class TestAppiumIosL5(unittest.TestCase):
         minus_button = self.driver.find_element_by_accessibility_id("ComputeSubButton")
 
         # compute sum
+        first_arg_textfield.send_keys("")
         first_arg_textfield.send_keys(str(first_arg))
+        second_arg_textfield.send_keys("")
         second_arg_textfield.send_keys(str(second_arg))
         minus_button.click()
 

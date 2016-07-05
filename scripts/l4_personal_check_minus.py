@@ -27,12 +27,7 @@ class TestAppiumIosL4(unittest.TestCase):
             '../app/TestApp/build/Debug-iphonesimulator/TestApp.app'
         )
 
-        # real device
-        # desired_caps['deviceName'] = "hengjie's iPhone"
-        # desired_caps['udid'] = '0b2fbaaf7fa0e752ea908b3d1287be783bffdb57'
-        # desired_caps['app'] = PATH(
-        #     '../app/TestApp/build/Debug-iphoneos/TestApp.ipa'
-        # )
+
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -50,8 +45,8 @@ class TestAppiumIosL4(unittest.TestCase):
 
         # end the session
         self.driver.quit()
+
     # 具体测试内容,函数名必须以test_开头
-    
     def test_check_sum_function(self):
         first_arg = 10
         second_arg = 2
@@ -72,7 +67,6 @@ class TestAppiumIosL4(unittest.TestCase):
         # sum_result_label = self.driver.find_element_by_accessibility_id("Answer")
         sum_result_label = self.driver.find_element_by_accessibility_id("SubAnswer")
         self.assertEqual(sum_result_label.text, str(first_arg - second_arg))
-
 
 
 
