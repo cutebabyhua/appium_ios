@@ -2,7 +2,6 @@
 import os
 import unittest
 import sys
-
 from appium import webdriver
 
 # Returns abs path relative to this file and not cwd
@@ -52,6 +51,7 @@ class TestAppiumIosL5(unittest.TestCase):
         print 'tearDown'
 
 
+
     def test_check_sum_function(self):
         first_arg = 5
         second_arg = 6
@@ -71,7 +71,10 @@ class TestAppiumIosL5(unittest.TestCase):
         # check if sum correct
         sum_result_label = self.driver.find_element_by_accessibility_id("Answer")
         self.assertEqual(sum_result_label.text, str(first_arg + second_arg))
+        global SCREENSHOT_NAME
+        SCREENSHOT_NAME = sys._getframe().f_code.co_name+ ".png"
         print 'test_sum'
+        print SCREENSHOT_NAME
 
 
     def test_check_minus_function(self):
@@ -93,8 +96,10 @@ class TestAppiumIosL5(unittest.TestCase):
         # check if sum correct
         minus_result_label = self.driver.find_element_by_accessibility_id("SubAnswer")
         self.assertEqual(minus_result_label.text, str(first_arg - second_arg))
+        global SCREENSHOT_NAME
+        SCREENSHOT_NAME = sys._getframe().f_code.co_name + ".png"
         print 'test_minus'
-
+        print SCREENSHOT_NAME
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAppiumIosL5)
