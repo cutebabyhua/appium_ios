@@ -5,11 +5,14 @@ import sys
 from appium import webdriver
 
 # Returns abs path relative to this file and not cwd
+# os.path模块主要用于文件的属性获取
+# os.path.abspath(path) //返回path规范化的绝对路径。
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
-SCREENSHOT_NAME = "check_sum_error.png"
+
+# SCREENSHOT_NAME = "check_sum_error.png"
 
 class TestAppiumIosL5(unittest.TestCase):
 
@@ -25,7 +28,7 @@ class TestAppiumIosL5(unittest.TestCase):
         # simulator
         desired_caps['deviceName'] = 'iPhone 5s'
         desired_caps['app'] = PATH(
-            '../app/TestApp/build/Debug-iphonesimulator/TestApp.app'
+            '/Users/chenjinhua/git/appium_ios/app/TestApp/DerivedData/TestApp/Build/Products/Debug-iphonesimulator/TestApp.app'
         )
         cls.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -47,10 +50,10 @@ class TestAppiumIosL5(unittest.TestCase):
 
         # check if need to take screenshot
         if sys.exc_info()[0]:  # Returns the info of exception being handled
-            self.driver.save_screenshot(SCREENSHOT_NAME)
+            self.driver.save_screenshot(self.id().split(".")[-1]+".png")
         print 'tearDown'
-
-
+        # self.id()获取当前test_method完整的名字,脚本名.类名.方法名
+        # split(".")[-1]以.为分隔符,取最后一个值
 
     def test_check_sum_function(self):
         first_arg = 5
@@ -62,19 +65,17 @@ class TestAppiumIosL5(unittest.TestCase):
         sum_button = self.driver.find_element_by_name("ComputeSumButton")
 
         # compute sum
-        first_arg_textfield.send_keys("")
+        # first_arg_textfield.send_keys("")
+        first_arg_textfield.clear()
         first_arg_textfield.send_keys(str(first_arg))
-        second_arg_textfield.send_keys("")
+        second_arg_textfield.clear()
         second_arg_textfield.send_keys(str(second_arg))
         sum_button.click()
 
         # check if sum correct
         sum_result_label = self.driver.find_element_by_accessibility_id("Answer")
         self.assertEqual(sum_result_label.text, str(first_arg + second_arg))
-        global SCREENSHOT_NAME
-        SCREENSHOT_NAME = sys._getframe().f_code.co_name+ ".png"
         print 'test_sum'
-        print SCREENSHOT_NAME
 
 
     def test_check_minus_function(self):
@@ -87,19 +88,17 @@ class TestAppiumIosL5(unittest.TestCase):
         minus_button = self.driver.find_element_by_accessibility_id("ComputeSubButton")
 
         # compute sum
-        first_arg_textfield.send_keys("")
+        first_arg_textfield.clear()
         first_arg_textfield.send_keys(str(first_arg))
-        second_arg_textfield.send_keys("")
+        second_arg_textfield.clear()
         second_arg_textfield.send_keys(str(second_arg))
         minus_button.click()
 
         # check if sum correct
         minus_result_label = self.driver.find_element_by_accessibility_id("SubAnswer")
         self.assertEqual(minus_result_label.text, str(first_arg - second_arg))
-        global SCREENSHOT_NAME
-        SCREENSHOT_NAME = sys._getframe().f_code.co_name + ".png"
         print 'test_minus'
-        print SCREENSHOT_NAME
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestAppiumIosL5)
