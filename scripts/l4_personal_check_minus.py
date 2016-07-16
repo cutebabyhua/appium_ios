@@ -24,7 +24,7 @@ class TestAppiumIosL4(unittest.TestCase):
         # simulator
         desired_caps['deviceName'] = 'iPhone 5s'
         desired_caps['app'] = PATH(
-            '../app/TestApp/build/Debug-iphonesimulator/TestApp.app'
+            '/Users/chenjinhua/git/appium_ios/app/TestApp/DerivedData/TestApp/Build/Products/Debug-iphonesimulator/TestApp.app'
         )
 
 

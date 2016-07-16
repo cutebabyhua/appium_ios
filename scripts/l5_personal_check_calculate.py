@@ -42,8 +42,6 @@ class TestAppiumIosL5(unittest.TestCase):
     def setUp(self):
         # clear screenshot
 
-        if os.path.exists(SCREENSHOT_NAME):
-            os.remove(SCREENSHOT_NAME)
         print 'setUp'
 
     def tearDown(self):
