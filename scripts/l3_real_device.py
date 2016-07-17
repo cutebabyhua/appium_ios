@@ -13,14 +13,14 @@ PATH = lambda p: os.path.abspath(
 
 class TestiOSEnvironment(unittest.TestCase):
     def setUp(self):
-        # open helloworld.app on iPhone 5s (8.3)
+        # open helloworld.app on iPhone 5 (7.0)
         desired_caps = {}
         desired_caps['platformName'] = 'iOS'
-        desired_caps['platformVersion'] = '8.3'
+        desired_caps['platformVersion'] = '9.3.1'
         desired_caps['deviceName'] = 'iPhone 5s'
-        desired_caps['udid'] = '013c0207a9c1ff18fdfeb76dc3d91de37c40de46'
+        desired_caps['udid'] = '680d5b39d653ada092597393bf51e0947b0b368d'
         desired_caps['app'] = PATH(
-            '../app/os/helloworld.app'
+            '/Users/chenjinhua/Downloads/Helloworld/DerivedData/Helloworld/Build/Products/Debug-iphoneos/Helloworld.app'
         )
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
