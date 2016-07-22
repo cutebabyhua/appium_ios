@@ -36,14 +36,24 @@ class TestL6(unittest.TestCase):
         self.driver.find_element_by_accessibility_id("Image (Zoom and Pinch)").click()
 
         image = self.driver.find_element_by_accessibility_id("imageScrollView")
-        # self.driver.zoom(image)
+        location = image.location
+
+        # 获取image的坐标,为(20,90)
+        print location
+        x = location["x"]
+        y = location["y"]
+        print x
+        print y
+
+        # 获取image的宽和高,分别为300,300
+        size = image.size
+        print size
+
         a1 = TouchAction()
-        a1.press(image).wait(100).move_to(300, 100).move_to(250, 150).release()
+        a1.press(30, 100).move_to(30, 150).release()
         a2 = TouchAction()
-        a2.press(image).wait(100).move_to(30, 350).move_to(200, 250).release()
-        ma = MultiAction(self.driver, image)
-        ma.add(a1, a2)
-        ma.perform()
+        a2.press(30, 100).move_to(30, 50).release()
+        MultiAction(self.driver).add(a1, a2).perform()
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestL6)
