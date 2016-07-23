@@ -1,0 +1,20 @@
+一、noRest
+1、模拟器：（Reset not set, not ending sim or cleaning up app state）
+如果已安装应用，直接打开应用脚本结束后，不卸载应用且不关闭模拟器。
+2、真机：
+如果已安装应用，直接打开应用脚本结束后，卸载应用。
+
+二、fullReset
+1、模拟器：（Cleaning sim data files，Cleaning app data files）
+关闭模拟器清除数据，启动模拟器安装应用执行脚本后，关闭模拟器并清除数据。
+2、真机：（fullReset requested. Forcing app install.&fullReset requested. Will try to uninstall the app.）
+如果已安装应用，卸载后再安装应用，执行脚本后，卸载应用。
+
+
+三、fastReset
+1、模拟器：
+关闭模拟器并清除数据，启动模拟器安装应用执行脚本后，关闭模拟器并清除数据。
+2、真机：（fullReset not requested. No need to install. &On a real device; cannot clean device state）
+如果已安装应用，直接打开应用脚本结束后，不卸载应用。
+
+
