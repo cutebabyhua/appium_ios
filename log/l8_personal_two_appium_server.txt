@@ -5,4 +5,4 @@
 结果：失败
 报错：Failed to start an Appium session, err was: Error: Instruments crashed on startup。
 
-查资料结果：appium并发运行不支持iOS，原因是instruments不能多线程。
+查资料结果：在一台mac机器上,appium并发运行不支持iOS，原因是instruments不能多线程。
