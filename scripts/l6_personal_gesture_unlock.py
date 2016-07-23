@@ -22,7 +22,7 @@ class TestL6(unittest.TestCase):
         desired_caps['app'] = PATH(
             '/Users/chenjinhua/git/appium_ios/app/AppForUITest/appForUITest/build/Debug-iphonesimulator/appForUITest.app'
         )
-        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        self.driver = webdriver.Remote('http://localhost:4730/wd/hub', desired_caps)
         print 'setUp'
 
     def tearDown(self):
@@ -49,7 +49,7 @@ class TestL6(unittest.TestCase):
         action2.press(btn3).wait(100).move_to(btn6).wait(100).move_to(btn5).wait(100).move_to(btn7).wait(100).move_to(btn1).wait(100).release().perform()
 
         hintString = self.driver.find_element_by_accessibility_id("password has been setup!")
-        self.assertEqual(hintString.text,"password has been setup!")
+        self.assertEqual(hintString.text, "password has been setup!")
         print "手势校验通过"
 
         action3 = TouchAction(self.driver)

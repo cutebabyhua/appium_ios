@@ -20,19 +20,23 @@ class TestiOSEnvironment(unittest.TestCase):
         desired_caps['deviceName'] = 'iPhone 5s'
         desired_caps['udid'] = '680d5b39d653ada092597393bf51e0947b0b368d'
         desired_caps['app'] = PATH(
-            '/Users/chenjinhua/Downloads/Helloworld/DerivedData/Helloworld/Build/Products/Debug-iphoneos/Helloworld.app'
+            '/Users/chenjinhua/git/appium_ios/app/HelloWorld/DerivedData/HelloWorld/Build/Products/Debug-iphoneos/HelloWorld.app'
         )
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
+        print "setUp()"
 
     def tearDown(self):
         # end the session
         self.driver.quit()
+        print "tearDown()"
 
     def test_screenshot(self):
         # wait for 5 seconds
+        print "1"
         sleep(5)
         # take screenshot
         self.driver.save_screenshot("helloworld_screenshot.png")
+        print "2"
 
 
 if __name__ == '__main__':
