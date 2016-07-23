@@ -40,5 +40,5 @@ class TestL9(unittest.TestCase):
         self.driver.zoom(image)
 
 if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestL6)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestL9)
     unittest.TextTestRunner(verbosity=2).run(suite)
