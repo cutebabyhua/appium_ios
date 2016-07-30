@@ -2,11 +2,10 @@
 import os
 import unittest
 import sys
+from time import sleep
 
 from custom_driver.custom_driver import CustomDriver
 from appium import webdriver
-from appium.webdriver.common.touch_action import TouchAction
-from appium.webdriver.common.multi_action import MultiAction
 # Returns abs path relative to this file and not cwd
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
@@ -30,14 +29,15 @@ class TestL9(unittest.TestCase):
         self.driver.quit()
         print 'tearDown'
 
-    def test_zoom_image(self):
+    def test_zoom_fix(self):
         # 查找元素 操作  校验
         self.driver.find_element_by_xpath("//UIAButton[@label='Gesture']").click()
         self.driver.find_element_by_accessibility_id("Image (Zoom and Pinch)").click()
 
         image = self.driver.find_element_by_accessibility_id("imageScrollView")
 
-        self.driver.zoom(image)
+        self.driver.zoom(image, percent=150, steps=10)
+        sleep(3)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestL9)

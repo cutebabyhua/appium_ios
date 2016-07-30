@@ -4,6 +4,8 @@ import unittest
 import sys
 
 # from custom_driver.custom_driver import CustomDriver
+from time import sleep
+
 from appium import webdriver
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.common.multi_action import MultiAction
@@ -50,10 +52,16 @@ class TestL6(unittest.TestCase):
         print size
 
         a1 = TouchAction()
-        a1.press(x, y).move_to(x, y+x).release()
+        a1.press(x=x, y=y).move_to(x=x, y=y+x).release()
         a2 = TouchAction()
-        a2.press(x, y).move_to(x, y-x).release()
-        MultiAction(self.driver).add(a1, a2).perform()
+        a2.press(x=x, y=y).move_to(x=x, y=y-x).release()
+
+        # MultiAction(self.driver).add(a1, a2).perform()这个写法是错误的,必须分3行,不能合并到1行!
+
+        multi_touch = MultiAction(self.driver)
+        multi_touch.add(a1, a2)
+        multi_touch.perform()
+        sleep(3)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestL6)

@@ -5,28 +5,23 @@ from appium.webdriver.common.multi_action import MultiAction
 class CustomDriver(webdriver.Remote):
 
     def zoom(self, element=None, percent=200, steps=50):
-
+        # calculate startX, startY, endX, endY our self
         location = element.location
         size = element.size
-        x = location["x"]+size["width"]/2
-        y = location["y"]+size["height"]/2
 
+        startX = location["x"] + size["width"] / 2
+        startY = location["x"] + size["height"] / 2
 
-        a1 = TouchAction()
-        a1.press(x, y).move_to(x, y-30).release()
-        a2 = TouchAction()
-        a2.press(x, y).move_to(x, y+30).release()
-        MultiAction(self).add(a1, a2).perform()
+        # calculate end location using percentage
+        endX = startX + size["width"] / 2 * (percent - 100) / 100.0
+        endY = startY + size["height"] / 2 * (percent -100) / 100.0
 
-    def pinch(self, element=None, percent=200, steps=50):
-
-        location = element.location
-        size = element.size
-        x = location["x"]+size["width"]/2
-        y = location["y"]+size["height"]/2
-
-        a1 = TouchAction()
-        a1.press(x, y-30).move_to(x, y).release()
-        a2 = TouchAction()
-        a2.press(x, y+30).move_to(x, y).release()
-        MultiAction(self).add(a1, a2).perform()
+        opts = {
+            'startX': startX,
+            'startY': startY,
+            'endX': endX,
+            'endY': endY,
+            'duration': steps / 10
+        }
+        self.execute_script('mobile: pinchOpen', opts)
+        return self

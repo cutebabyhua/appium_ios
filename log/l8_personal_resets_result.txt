@@ -2,7 +2,7 @@
 1、模拟器：（Reset not set, not ending sim or cleaning up app state）
 如果已安装应用，直接打开应用脚本结束后，不卸载应用且不关闭模拟器。
 2、真机：
-如果已安装应用，直接打开应用脚本结束后，卸载应用。
+如果已安装应用，直接打开应用脚本结束后，不卸载应用。
 
 二、fullReset
 1、模拟器：（Cleaning sim data files，Cleaning app data files）

@@ -22,7 +22,7 @@ class TestL6(unittest.TestCase):
         desired_caps['app'] = PATH(
             '/Users/chenjinhua/git/appium_ios/app/AppForUITest/appForUITest/build/Debug-iphonesimulator/appForUITest.app'
         )
-        self.driver = webdriver.Remote('http://localhost:4730/wd/hub', desired_caps)
+        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
         print 'setUp'
 
     def tearDown(self):
