@@ -1,0 +1,9 @@
+1、安装jenkins
+	brew install jenkins
+2、启动jenkins
+命令行执行：jenkins后，在浏览器里输入http://localhost:8080。
+
+
+注意：
+1、源码管理
+Jenkins默认安装之后并没有支持GIT代码托管工具，需要安装一个对应的插件，可以安装Git Plugin。
